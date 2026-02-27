@@ -27,18 +27,25 @@ export const Login: React.FC = () => {
     try {
       // Basic validation
       if (!email || !password) {
-        throw new Error('Please fill in all fields');
+        setError('Please fill in all fields');
+        setLoading(false);
+        return;
       }
 
       if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-        throw new Error('Please enter a valid email');
+        setError('Please enter a valid email');
+        setLoading(false);
+        return;
       }
 
       await login(email, password);
-      navigate('/onboarding');
+      // Clear form after successful login
+      setEmail('');
+      setPassword('');
+      // Navigation happens automatically after auth state updates
+      navigate('/onboarding', { replace: true });
     } catch (err: any) {
       setError(err.message || 'Login failed. Please try again.');
-      console.error(err);
     } finally {
       setLoading(false);
     }

@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 222 25% 6%;
+    --foreground: 40 20% 92%;
+
+    --card: 222 20% 10%;
+    --card-foreground: 40 20% 92%;
+
+    --popover: 222 20% 10%;
+    --popover-foreground: 40 20% 92%;
+
+    --primary: 43 85% 55%;
+    --primary-foreground: 222 25% 6%;
+
+    --secondary: 222 15% 16%;
+    --secondary-foreground: 40 20% 85%;
+
+    --muted: 222 15% 14%;
+    --muted-foreground: 220 10% 50%;
+
+    --accent: 155 55% 42%;
+    --accent-foreground: 222 25% 6%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 40 20% 95%;
+
+    --border: 222 15% 18%;
+    --input: 222 15% 18%;
+    --ring: 43 85% 55%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 222 22% 8%;
+    --sidebar-foreground: 40 15% 75%;
+    --sidebar-primary: 43 85% 55%;
+    --sidebar-primary-foreground: 222 25% 6%;
+    --sidebar-accent: 222 15% 14%;
+    --sidebar-accent-foreground: 40 20% 90%;
+    --sidebar-border: 222 15% 15%;
+    --sidebar-ring: 43 85% 55%;
+
+    /* Custom tokens */
+    --gold: 43 85% 55%;
+    --gold-glow: 43 90% 65%;
+    --gold-dim: 43 60% 35%;
+    --emerald: 155 55% 42%;
+    --emerald-glow: 155 60% 55%;
+    --crimson: 0 72% 55%;
+    --navy: 222 25% 6%;
+    --navy-light: 222 20% 12%;
+    --chart-gold: 43 85% 55%;
+    --chart-emerald: 155 55% 42%;
+    --chart-blue: 210 70% 55%;
+    --chart-purple: 270 60% 60%;
+    --chart-orange: 25 90% 55%;
+
+    --gradient-gold: linear-gradient(135deg, hsl(43 85% 55%), hsl(35 90% 45%));
+    --gradient-card: linear-gradient(145deg, hsl(222 20% 11%), hsl(222 20% 8%));
+    --gradient-score-low: linear-gradient(135deg, hsl(0 72% 55%), hsl(25 90% 55%));
+    --gradient-score-mid: linear-gradient(135deg, hsl(25 90% 55%), hsl(43 85% 55%));
+    --gradient-score-high: linear-gradient(135deg, hsl(43 85% 55%), hsl(155 55% 42%));
+    --shadow-gold: 0 4px 30px -5px hsl(43 85% 55% / 0.2);
+    --shadow-card: 0 4px 20px -5px hsl(0 0% 0% / 0.4);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
+    box-shadow: var(--shadow-card);
+  }
+
+  .gold-glow {
+    box-shadow: var(--shadow-gold);
+  }
+
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+
+  .bg-gold {
+    background-color: hsl(var(--gold));
+  }
+
+  .text-emerald-accent {
+    color: hsl(var(--emerald));
+  }
+
+  .text-crimson {
+    color: hsl(var(--crimson));
+  }
+
+  .gradient-gold {
+    background: var(--gradient-gold);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .score-ring {
+    filter: drop-shadow(0 0 12px hsl(var(--gold) / 0.4));
+  }
+
+  .animate-pulse-gold {
+    animation: pulseGold 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseGold {
+    0%, 100% { box-shadow: 0 0 0 0 hsl(43 85% 55% / 0.3); }
+    50% { box-shadow: 0 0 20px 5px hsl(43 85% 55% / 0.15); }
+  }
+
+  .animate-score-fill {
+    animation: scoreFill 1.5s ease-out forwards;
+  }
+
+  @keyframes scoreFill {
+    from { stroke-dashoffset: 283; }
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted)) transparent;
+  }
+}
